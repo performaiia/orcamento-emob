@@ -110,8 +110,8 @@ body {
 .moeda { font-size: 0.7em; }
 .destaque { color: var(--destaque); font-weight: var(--peso-texto); font-size: 0.75em; }
 
-.botao-ficha:focus, .seta:focus { outline: none; }
-.botao-ficha:focus-visible, .seta:focus-visible { outline: 2px solid var(--destaque); outline-offset: 3px; }
+.botao-ficha:focus, .seta:focus, .cabecalho__marca:focus { outline: none; }
+.botao-ficha:focus-visible, .seta:focus-visible, .cabecalho__marca:focus-visible { outline: 2px solid var(--destaque); outline-offset: 3px; }
 .botao-ficha {
   margin-top: 3.6dvh;
   width: calc(40 * var(--u));

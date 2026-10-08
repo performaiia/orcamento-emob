@@ -42,12 +42,26 @@
   <time class="cabecalho__data" datetime="2026-10-08">08 OUT 2026</time>
 </header>
 <main class="vitrine">
-  <div class="palco" data-palco aria-live="polite"></div>
+  <div class="palco" data-palco aria-live="polite"><!-- estatico:inicio --><article class="orcamento" aria-label="iPhone 17 Pro Max 256 GB">
+  <div class="orcamento__texto">
+    <h1 class="orcamento__modelo"><span class="modelo__linha">iPhone 17</span> <span class="modelo__linha">Pro Max</span></h1>
+    <p class="orcamento__capacidade">256GB</p>
+  </div>
+  <div class="orcamento__aparelhos"><div class="leque" style="--n:1"><picture>
+      <source type="image/avif" srcset="./assets/produtos/web/iphone-17-pro-max-silver-traseira-400.avif 400w, ./assets/produtos/web/iphone-17-pro-max-silver-traseira-768.avif 768w" sizes="(min-width: 900px) min(30vw, 24rem), 40vw">
+      <img class="aparelho" style="--i:0" src="./assets/produtos/web/iphone-17-pro-max-silver-traseira-400.webp" srcset="./assets/produtos/web/iphone-17-pro-max-silver-traseira-400.webp 400w, ./assets/produtos/web/iphone-17-pro-max-silver-traseira-768.webp 768w" sizes="(min-width: 900px) min(30vw, 24rem), 40vw" width="768" height="1590" alt="iPhone 17 Pro Max Prateado" decoding="async" fetchpriority="high">
+    </picture></div></div>
+  <div class="orcamento__preco">
+    <p class="preco"><span class="moeda">R$</span> <strong>7.250</strong> <span class="destaque">à vista</span><span class="bolinhas"><span class="bolinha" style="--cor: var(--cor-silver)" role="img" aria-label="Prateado" title="Prateado"></span></span></p>
+
+  </div>
+  <button class="botao-ficha" type="button" data-abre="p1">ver ficha técnica</button>
+</article><!-- estatico:fim --></div>
   <nav class="navegacao" aria-label="Orçamentos">
     <button class="seta seta--anterior seta--oculta" type="button" data-anterior disabled aria-label="Orçamento anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
     <button class="seta seta--proximo" type="button" data-proximo aria-label="Próximo orçamento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   </nav>
-  <p class="indicador" data-indicador></p>
+  <p class="indicador" data-indicador>1/7</p>
 </main>
 <div id="ficha"></div>
 <script type="module" src="orcamento.js"></script>

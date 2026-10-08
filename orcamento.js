@@ -131,7 +131,18 @@ function montar(doc) {
   });
 
   const pedido = Number(new URLSearchParams(doc.defaultView.location.search).get('o'));
-  mostrar(pedido >= 1 && pedido <= dados.length ? pedido - 1 : 0);
+  const inicial = pedido >= 1 && pedido <= dados.length ? pedido - 1 : 0;
+  // U3: o 1º orçamento já vem no HTML estático; o JS adota em vez de recriar
+  const estatico = palco.querySelector('.orcamento');
+  if (estatico && inicial === 0) {
+    atual = 0;
+    alinharSetas();
+    movimento.troca(null, estatico);
+    for (const v of [1]) if (dados[v]) { carregados.add(v); preCarregar(doc, dados[v]); }
+  } else {
+    estatico?.remove();
+    mostrar(inicial);
+  }
 }
 
 if (typeof document !== 'undefined') montar(document);
