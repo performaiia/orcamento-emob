@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orçamento eMob</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">
+<!-- pre-carga:inicio -->
+<link rel="preload" as="image" type="image/avif" imagesrcset="./assets/produtos/web/iphone-17-pro-max-silver-traseira-400.avif 400w, ./assets/produtos/web/iphone-17-pro-max-silver-traseira-768.avif 768w" imagesizes="(min-width: 900px) min(30vw, 24rem), 40vw" fetchpriority="high">
+<!-- pre-carga:fim -->
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="orcamento.css">
+<link rel="stylesheet" href="componentes/ficha/ficha.css">
+</head>
+<body>
+<div class="grafismo" aria-hidden="true"></div>
+<header class="cabecalho">
+  <a class="cabecalho__marca" href="./" aria-label="eMob">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="150 330 490 140" role="img" aria-label="emob">
+  <!-- Inicial = assets/marca/9.svg (logo-colorida.png), final = 8.svg (logo-e-escuro.png); fundo removido, geometria intacta.
+       Camadas de baixo (#e-escuro, #mob-escuro) ficam sempre opacas; o ciclo apaga #e-cor e acende #mob-claro (sem franja na borda). -->
+  <g id="e">
+    <path id="e-escuro" fill="#353535" d="M239.58,378.2a46.8,46.8,0,0,0-66.21,0,46.79,46.79,0,0,0,33.13,79.89v-23.4a23.37,23.37,0,1,1,23.4-23.41H206.5v23.41H230a23.41,23.41,0,0,0,23.4-23.41h0A45.09,45.09,0,0,0,239.58,378.2Z"/>
+    <path id="e-cor" fill="#e0ff00" d="M239.58,378.2a46.8,46.8,0,0,0-66.21,0,46.79,46.79,0,0,0,33.13,79.89v-23.4a23.37,23.37,0,1,1,23.4-23.41H206.5v23.41H230a23.41,23.41,0,0,0,23.4-23.41h0A45.09,45.09,0,0,0,239.58,378.2Z"/>
+  </g>
+  <g id="mob-escuro" fill="#353535">
+    <rect id="ponto-escuro" x="406" y="434.69" width="23.44" height="23.4"/>
+    <path id="m-escuro" d="M382.6,364.48a45.05,45.05,0,0,0-33.08,13.72c-.7.69-1.36,1.4-2,2.12-.67-.72-1.35-1.43-2-2.12a46.8,46.8,0,0,0-79.9,33.08v46.81H289V411.28a23.4,23.4,0,0,1,46.8,0v46.81H359.2V411.28a23.4,23.4,0,0,1,46.8,0h23.45a46.84,46.84,0,0,0-46.85-46.8Z"/>
+    <path id="o-escuro" d="M488.49,364.48a46.84,46.84,0,1,0,33.09,13.72A45.13,45.13,0,0,0,488.49,364.48ZM505,427.8a23.27,23.27,0,1,1,6.88-16.52A22.47,22.47,0,0,1,505,427.8Z"/>
+    <path id="b-escuro" d="M627.47,378.2a45.09,45.09,0,0,0-33.08-13.72v23.4A23.36,23.36,0,1,1,571,411.28V341.07h-23.4v70.21a46.81,46.81,0,1,0,79.89-33.08Z"/>
+  </g>
+  <g id="mob-claro" fill="#ffffff">
+    <rect id="ponto" x="406" y="434.69" width="23.44" height="23.4"/>
+    <path id="m" d="M382.6,364.48a45.05,45.05,0,0,0-33.08,13.72c-.7.69-1.36,1.4-2,2.12-.67-.72-1.35-1.43-2-2.12a46.8,46.8,0,0,0-79.9,33.08v46.81H289V411.28a23.4,23.4,0,0,1,46.8,0v46.81H359.2V411.28a23.4,23.4,0,0,1,46.8,0h23.45a46.84,46.84,0,0,0-46.85-46.8Z"/>
+    <path id="o" d="M488.49,364.48a46.84,46.84,0,1,0,33.09,13.72A45.13,45.13,0,0,0,488.49,364.48ZM505,427.8a23.27,23.27,0,1,1,6.88-16.52A22.47,22.47,0,0,1,505,427.8Z"/>
+    <path id="b" d="M627.47,378.2a45.09,45.09,0,0,0-33.08-13.72v23.4A23.36,23.36,0,1,1,571,411.28V341.07h-23.4v70.21a46.81,46.81,0,1,0,79.89-33.08Z"/>
+  </g>
+</svg>
+
+  </a>
+  <time class="cabecalho__data" datetime="2026-10-08">08 OUT 2026</time>
+</header>
+<main class="vitrine">
+  <div class="palco" data-palco aria-live="polite"></div>
+  <nav class="navegacao" aria-label="Orçamentos">
+    <button class="seta seta--anterior seta--oculta" type="button" data-anterior disabled aria-label="Orçamento anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="seta seta--proximo" type="button" data-proximo aria-label="Próximo orçamento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+  <p class="indicador" data-indicador></p>
+</main>
+<div id="ficha"></div>
+<script type="module" src="orcamento.js"></script>
+<script type="module" src="componentes/ficha/ficha.js"></script>
+</body>
+</html>

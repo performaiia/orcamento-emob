@@ -1,0 +1,73 @@
+/* Ficha técnica. Cor e fonte só por tokens.css; tempo e easing do ritmo "painel" (.pagina/movimento/ritmo.json). */
+:root {
+  --ficha-tempo: 567ms;
+  --ficha-easing: ease-in-out;
+  --ficha-deslocamento: 3rem; /* "painel abaixo do lugar" (I-ficha); distância decidida no G8, a conferir no G9a */
+}
+.ficha {
+  width: min(100% - 2rem, 34rem);
+  max-height: min(100dvh - 2rem, 46rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  background: var(--superficie);
+  color: var(--texto);
+  font-family: var(--fonte);
+  font-weight: var(--peso-texto);
+  line-height: var(--entrelinha-texto);
+  overflow: auto;
+  overscroll-behavior: contain;
+  opacity: 0;
+  transform: translateY(var(--ficha-deslocamento));
+  transition: opacity var(--ficha-tempo) var(--ficha-easing), transform var(--ficha-tempo) var(--ficha-easing);
+}
+.ficha::backdrop {
+  background: var(--fundo-modal);
+  opacity: 0;
+  transition: opacity var(--ficha-tempo) var(--ficha-easing);
+}
+.ficha--aberta { opacity: 1; transform: none; }
+.ficha--aberta::backdrop { opacity: 1; }
+.ficha__titulo:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ficha, .ficha::backdrop { transition: none; }
+}
+.ficha__topo {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: var(--superficie);
+}
+.ficha__titulo {
+  margin: 0;
+  font-size: var(--t-capacidade);
+  font-weight: var(--peso-titulo);
+  line-height: var(--entrelinha-titulo);
+}
+.ficha__fechar {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--texto);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texto);
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.ficha__fechar:focus-visible { outline: 2px solid var(--destaque); outline-offset: 2px; }
+.ficha__lista { margin: 0; padding: 0 1.25rem 1.25rem; }
+.ficha__linha { padding: 0.75rem 0; border-top: 1px solid var(--divisoria); }
+.ficha__linha dt { font-size: var(--t-botao); color: var(--destaque); }
+.ficha__linha dd { margin: 0.25rem 0 0; font-size: var(--t-data); }
+@media (min-width: 48rem) {
+  .ficha__linha { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; }
+  .ficha__linha dd { margin: 0; }
+}

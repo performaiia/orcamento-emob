@@ -1,0 +1,171 @@
+/* S1 cabeçalho, S2 orçamento, S4 navegação. Cor e fonte por token de tokens.css.
+   Disposição medida no esboço da Thaís (docs/esboco-thais-referencia-08.10.png, m6) em u = 1% da largura do esboço;
+   o esboço tem 168u de altura, então u = min(1vw, 100dvh / 170) mantém a mesma escala no celular e no desktop. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { overflow: hidden; }
+:root { --u: min(1vw, 100dvh / 170); }
+body {
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte);
+  font-weight: var(--peso-texto);
+  line-height: var(--entrelinha-texto);
+}
+
+/* grafismo da marca atrás de tudo, fixo, cobrindo o fundo (m5) */
+.grafismo {
+  position: fixed;
+  inset: 0 max(0px, calc((100vw - 100 * var(--u)) / 2)); /* só na largura da coluna; laterais lisas (m7) */
+  z-index: 0;
+  background: url("./assets/marca/grafismo/web/grafismo-branco.svg") center / cover no-repeat;
+  opacity: var(--opacidade-grafismo);
+  pointer-events: none;
+}
+.cabecalho, .vitrine { position: relative; z-index: 1; }
+
+/* cabeçalho: faixa de 15u, logo de 24u à esquerda, data à direita */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(15 * var(--u));
+  padding-inline: max(calc(5 * var(--u)), calc((100vw - 100 * var(--u)) / 2)); /* desktop: logo e data nas bordas da coluna */
+  background: var(--fundo-cabecalho);
+}
+.logo { display: block; width: calc(24 * var(--u)); height: auto; }
+.cabecalho__data { color: var(--destaque); font-size: calc(4.6 * var(--u)); letter-spacing: var(--espaco-data); }
+
+/* coluna de 100u, centrada; blocos empilhados como no esboço */
+.vitrine {
+  position: relative;
+  width: calc(100 * var(--u));
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start; /* 1/5 logo abaixo do botão (R12), sobra na base */
+  padding-block: 6.4dvh 5.5dvh; /* respiros do esboço: até o título e base (R8) */
+  min-height: 0;
+}
+.palco { display: grid; min-height: 0; }
+.orcamento {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start; /* vãos fixos do esboço; a pouca sobra fica na base */
+  justify-items: center;
+  text-align: center;
+}
+.orcamento--saindo { pointer-events: none; }
+
+.orcamento__texto { display: grid; justify-items: center; }
+.orcamento__modelo {
+  margin: 0;
+  font-size: calc(12.7 * var(--u));
+  font-weight: var(--peso-titulo);
+  line-height: var(--entrelinha-titulo);
+}
+.modelo__linha { display: block; }
+.orcamento__capacidade {
+  justify-self: end;
+  margin: calc(1 * var(--u)) calc(3 * var(--u)) 0 0;
+  color: var(--destaque);
+  font-size: calc(6 * var(--u));
+  line-height: 1;
+}
+
+/* aparelhos: proporção natural do arquivo (altura fixa, largura automática), leque só por translação e sobreposição (m7, R02#2) */
+.orcamento__aparelhos { margin-top: 3.8dvh; display: grid; place-items: center; }
+.leque {
+  --alto: min(35dvh, calc(63 * var(--u)));  /* R10: 35% da altura como no esboço; teto mantém o leque em ≤ 80u */
+  --largura: calc(var(--alto) * 0.483);          /* 768/1590, só para posicionar; a imagem usa a própria proporção */
+  --avanco: calc(var(--largura) * 0.8);      /* R11: cada aparelho mostra ≥ 80% da largura */
+  perspective: 1200px;
+  position: relative;
+  width: calc(var(--largura) + (var(--n) - 1) * var(--avanco));
+  height: var(--alto);
+}
+.aparelho {
+  position: absolute;
+  top: 0;
+  left: calc(var(--avanco) * var(--i));
+  height: var(--alto);
+  width: auto;
+  transform: rotateY(-8deg); /* lateral à mostra como no esboço; largura aparente cai < 3% */
+  transform-origin: left center;
+}
+
+/* preço: "R$ 0.000 à vista" (sem 12x, m12) */
+.orcamento__preco { margin-top: 3.2dvh; display: grid; justify-items: center; }
+.preco { margin: 0; font-weight: var(--peso-preco); white-space: nowrap; line-height: 1.1; }
+.preco { font-size: calc(9.5 * var(--u)); }
+/* m13: bolinha da cor ao lado do preço (cor e tamanho por token do ag-ux) */
+.bolinhas { display: inline-flex; gap: var(--espaco-bolinha); margin-left: var(--espaco-bolinha); vertical-align: middle; }
+.bolinha { display: inline-block; width: var(--tamanho-bolinha); height: var(--tamanho-bolinha); border-radius: 50%; background: var(--cor); border: var(--borda-bolinha); }
+.bolinha--escura { border: var(--borda-bolinha-escura); }
+.preco strong { font-weight: var(--peso-preco); }
+.moeda { font-size: 0.7em; }
+.destaque { color: var(--destaque); font-weight: var(--peso-texto); font-size: 0.75em; }
+
+.botao-ficha:focus, .seta:focus { outline: none; }
+.botao-ficha:focus-visible, .seta:focus-visible { outline: 2px solid var(--destaque); outline-offset: 3px; }
+.botao-ficha {
+  margin-top: 3.6dvh;
+  width: calc(40 * var(--u));
+  height: calc(10 * var(--u));
+  border: 0;
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--destaque);
+  font: inherit;
+  font-size: calc(4.2 * var(--u));
+  cursor: pointer;
+}
+
+.indicador {
+  justify-self: center;
+  margin: calc(4 * var(--u)) 0 0; /* R12: respiro abaixo do botão */
+  font-size: calc(3.5 * var(--u));
+  opacity: var(--opacidade-indicador);
+}
+
+/* setas na altura dos aparelhos (--topo-setas, medido em orcamento.js), nas bordas da coluna, fora dos aparelhos */
+.navegacao {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.seta {
+  position: absolute;
+  top: var(--topo-setas, 50%);
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: calc(9 * var(--u));
+  height: calc(9 * var(--u));
+  border: 0;
+  border-radius: 50%;
+  background: var(--superficie);
+  color: var(--texto);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity var(--dur-painel, 0s) var(--easing-troca, ease), visibility 0s;
+}
+.seta--anterior { left: calc(3 * var(--u)); }
+.seta--proximo { right: calc(3 * var(--u)); }
+.seta--oculta { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity var(--dur-painel, 0s) var(--easing-troca, ease), visibility 0s var(--dur-painel, 0s); }
+.seta svg { width: 55%; height: 55%; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* movimento reduzido: estados finais já compostos */
+@media (prefers-reduced-motion: reduce) {
+  .seta, .seta--oculta { transition: none; }
+}
+
+/* paisagem (desktop baixo): a coluna do esboço não cabe com 35% A; aparelhos cedem até o 1/5 caber sem sobrepor */
+@media (min-aspect-ratio: 1/1) {
+  .leque { --alto: min(26dvh, calc(63 * var(--u))); }
+}
