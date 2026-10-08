@@ -5,8 +5,6 @@ import { ligarMovimento, destinoTeclado, destinoSwipe } from './movimento.js';
 
 const PRECO_PENDENTE = '0.000';
 
-export const indicador = (i, total) => `${i + 1}/${total}`;
-
 export { SIZES };
 
 const srcset = (c, ext) => c.larguras.map((w) => `${c.base}-${w}.${ext} ${w}w`).join(', ');
@@ -63,7 +61,6 @@ function montar(doc) {
   const palco = doc.querySelector('[data-palco]');
   const anterior = doc.querySelector('[data-anterior]');
   const proximo = doc.querySelector('[data-proximo]');
-  const posicao = doc.querySelector('[data-indicador]');
   const movimento = ligarMovimento(doc, ritmo);
   const carregados = new Set();
   let atual = -1;
@@ -95,7 +92,6 @@ function montar(doc) {
     const novo = criar(i);
     palco.append(novo);
     atual = i;
-    posicao.textContent = indicador(i, dados.length);
     anterior.classList.toggle('seta--oculta', i === 0);
     proximo.classList.toggle('seta--oculta', i === dados.length - 1);
     anterior.disabled = i === 0;

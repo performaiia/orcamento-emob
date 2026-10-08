@@ -46,8 +46,8 @@ body {
   width: calc(100 * var(--u));
   margin: 0 auto;
   display: grid;
-  grid-template-rows: auto auto;
-  align-content: start; /* 1/5 logo abaixo do botão (R12), sobra na base */
+  grid-template-rows: auto;
+  align-content: start; /* sobra na base, abaixo do respiro do esboço */
   padding-block: 6.4dvh 5.5dvh; /* respiros do esboço: até o título e base (R8) */
   min-height: 0;
 }
@@ -125,12 +125,6 @@ body {
   cursor: pointer;
 }
 
-.indicador {
-  justify-self: center;
-  margin: calc(4 * var(--u)) 0 0; /* R12: respiro abaixo do botão */
-  font-size: calc(3.5 * var(--u));
-  opacity: var(--opacidade-indicador);
-}
 
 /* setas na altura dos aparelhos (--topo-setas, medido em orcamento.js), nas bordas da coluna, fora dos aparelhos */
 .navegacao {
